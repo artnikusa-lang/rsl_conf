@@ -59,17 +59,13 @@
     .glass {
       position: relative;
       overflow: hidden;
-      background: rgba(4, 5, 8, 0.34);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-top-color: rgba(255, 255, 255, 0.32);
-      border-bottom-color: rgba(255, 255, 255, 0.10);
+      background: rgba(4, 5, 8, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-top-color: rgba(255, 255, 255, 0.21);
       border-radius: var(--radius-lg);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.24),
-        inset 0 -1px 1px rgba(255, 255, 255, 0.08),
-        inset 1px 0 1px rgba(170, 230, 255, 0.14),
-        inset -1px 0 1px rgba(255, 215, 160, 0.10),
-        0 18px 42px rgba(0, 0, 0, 0.65);
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        0 16px 40px rgba(0, 0, 0, 0.60);
     }
 
     .header {
@@ -125,9 +121,9 @@
     .kit-tab {
       position: relative;
       appearance: none;
-      border: 1px solid rgba(255, 255, 255, 0.17);
-      border-top-color: rgba(255, 255, 255, 0.34);
-      background: rgba(6, 7, 10, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-top-color: rgba(255, 255, 255, 0.22);
+      background: rgba(6, 7, 10, 0.34);
       color: var(--text-soft);
       padding: 10px 16px;
       border-radius: 999px;
@@ -135,9 +131,7 @@
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.22),
-        0 8px 18px rgba(0, 0, 0, 0.48);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
       transition: all 0.18s ease;
     }
     .kit-tab:hover {
@@ -391,15 +385,12 @@
       background: rgba(6, 7, 10, 0.44);
       backdrop-filter: blur(18px) saturate(165%);
       -webkit-backdrop-filter: blur(18px) saturate(165%);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-top-color: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top-color: rgba(255, 255, 255, 0.24);
       border-radius: 999px;
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.28),
-        inset 0 -1px 1px rgba(255, 255, 255, 0.10),
-        inset 1px 0 1px rgba(170, 230, 255, 0.16),
-        inset -1px 0 1px rgba(255, 215, 160, 0.12),
-        0 18px 46px rgba(0, 0, 0, 0.78);
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 16px 42px rgba(0, 0, 0, 0.76);
     }
 
     .total-label {
@@ -455,14 +446,9 @@
       background: rgba(8, 10, 14, 0.62);
       backdrop-filter: blur(28px) saturate(175%);
       -webkit-backdrop-filter: blur(28px) saturate(175%);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-top-color: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 28px;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.30),
-        inset 1px 0 1px rgba(170, 230, 255, 0.16),
-        inset -1px 0 1px rgba(255, 215, 160, 0.12),
-        0 24px 64px rgba(0, 0, 0, 0.86);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.86);
     }
 
     .modal h3 {
@@ -1144,11 +1130,10 @@
               // Rich dark clear glass interior (matching AndroidLiquidGlass in 1636.jpg)
               glassCol = glassCol * 1.25 + vec3(0.012, 0.015, 0.022);
 
-              // Crisp Fresnel specular edge highlight
-              float fresnel = pow(edge, 4.5);
+              // Ultra-subtle, razor-thin specular catchlight on the curved glass edge
+              float fresnel = pow(edge, 8.0);
               float lightDir = clamp(dot(n, normalize(vec2(-0.55, -0.83))) * 0.5 + 0.5, 0.0, 1.0);
-              vec3 rimGlow = mix(vec3(0.74, 0.88, 1.0), vec3(1.0, 0.95, 0.88), 1.0 - lightDir);
-              glassCol += rimGlow * fresnel * (0.14 + 0.24 * lightDir);
+              glassCol += vec3(0.92, 0.96, 1.0) * fresnel * (0.045 + 0.065 * lightDir);
 
               finalCol = mix(finalCol, glassCol, inside);
             }
