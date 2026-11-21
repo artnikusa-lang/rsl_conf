@@ -963,15 +963,20 @@
       const summary = buildOrderText();
       document.getElementById('orderModal').classList.remove('open');
 
-      if (tg && typeof tg.sendData === 'function' && tg.initData) {
+      // In Telegram, KeyboardButton WebApps (from /start) have empty tg.initData — that's the exact mode where tg.sendData() works!
+      const inTelegram = Boolean(tg && typeof tg.sendData === 'function' && tg.platform && tg.platform !== 'unknown');
+      if (inTelegram && !tg.initData) {
         try {
           tg.sendData(JSON.stringify(payload));
-          showToast('Заявка отправлена в Telegram!');
           return;
         } catch (_) {}
       }
       copyText(summary);
-      showToast('Заявка скопирована — отправьте в Telegram!');
+      if (inTelegram) {
+        showToast('Заявка скопирована — открой через кнопку /start для автоотправки');
+      } else {
+        showToast('Заявка скопирована — отправьте в Telegram!');
+      }
     });
 
     // 3D Hyperspace Warp-Speed Starfield + 3-Pass GPU WebGL Separable Gaussian & SDF Liquid Glass Shader
