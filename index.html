@@ -8,18 +8,15 @@
   <style>
     :root {
       --bg: #000000;
-      --glass: rgba(16, 16, 20, 0.56);
-      --glass-strong: rgba(12, 12, 16, 0.78);
       --border: rgba(255, 255, 255, 0.16);
       --border-hi: rgba(255, 255, 255, 0.34);
       --text: #FFFFFF;
-      --text-soft: #DCDCE2;
-      --muted: #8E8E98;
+      --text-soft: #E2E4EC;
+      --muted: #8E92A0;
       --accent: #FFFFFF;
       --on-accent: #09090B;
-      --chip-bg: rgba(255, 255, 255, 0.08);
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
     }
 
     * {
@@ -58,16 +55,21 @@
       gap: 14px;
     }
 
+    /* Dark Clear Liquid Glass — zero milky white washout; real refraction rendered by warpCanvas */
     .glass {
-      background: var(--glass);
-      backdrop-filter: blur(22px) saturate(135%);
-      -webkit-backdrop-filter: blur(22px) saturate(135%);
-      border: 1px solid var(--border);
-      border-top-color: var(--border-hi);
+      position: relative;
+      overflow: hidden;
+      background: rgba(4, 5, 8, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top-color: rgba(255, 255, 255, 0.32);
+      border-bottom-color: rgba(255, 255, 255, 0.10);
       border-radius: var(--radius-lg);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 14px 36px rgba(0, 0, 0, 0.55);
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+        inset 1px 0 1px rgba(170, 230, 255, 0.14),
+        inset -1px 0 1px rgba(255, 215, 160, 0.10),
+        0 18px 42px rgba(0, 0, 0, 0.65);
     }
 
     .header {
@@ -75,7 +77,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 11px 16px;
+      border-radius: 999px;
     }
 
     .brand-left {
@@ -94,34 +97,20 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.26);
     }
 
     .brand-title {
       font-size: 16px;
       font-weight: 800;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
       white-space: nowrap;
     }
 
     .brand-sub {
-      font-size: 11.5px;
+      font-size: 12px;
       color: var(--muted);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .status-pill {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-soft);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-      flex-shrink: 0;
     }
 
     .kit-tabs {
@@ -134,29 +123,32 @@
     .kit-tabs::-webkit-scrollbar { display: none; }
 
     .kit-tab {
+      position: relative;
       appearance: none;
-      border: 1px solid var(--border);
-      background: rgba(20, 20, 26, 0.62);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-top-color: rgba(255, 255, 255, 0.34);
+      background: rgba(6, 7, 10, 0.36);
       color: var(--text-soft);
-      padding: 10px 15px;
+      padding: 10px 16px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 8px 18px rgba(0, 0, 0, 0.48);
       transition: all 0.18s ease;
     }
     .kit-tab:hover {
-      border-color: rgba(255, 255, 255, 0.36);
+      border-color: rgba(255, 255, 255, 0.38);
       color: #FFFFFF;
     }
     .kit-tab.active {
       background: #FFFFFF;
       color: #09090B;
       border-color: #FFFFFF;
-      box-shadow: 0 0 22px rgba(255, 255, 255, 0.28);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.30);
     }
 
     .card-body {
@@ -181,16 +173,18 @@
       letter-spacing: 0.6px;
       text-transform: uppercase;
       color: var(--text-soft);
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       padding: 4px 10px;
       border-radius: 999px;
       margin-bottom: 6px;
     }
 
     .kit-name {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
       line-height: 1.2;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
     }
 
     .kit-desc {
@@ -207,6 +201,7 @@
       font-size: 22px;
       font-weight: 800;
       white-space: nowrap;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
     }
 
     .price-note {
@@ -215,10 +210,10 @@
     }
 
     .section-title {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.8px;
       color: var(--muted);
     }
 
@@ -226,8 +221,8 @@
       display: flex;
       flex-direction: column;
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.10);
       overflow: hidden;
     }
 
@@ -237,7 +232,7 @@
       align-items: center;
       gap: 10px;
       padding: 10px 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
     .part-row:last-child { border-bottom: none; }
 
@@ -259,20 +254,20 @@
     .badge {
       font-size: 10.5px;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 4px 9px;
       border-radius: 999px;
       white-space: nowrap;
       flex-shrink: 0;
     }
     .badge-new {
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
       color: #FFFFFF;
       border: 1px solid rgba(255, 255, 255, 0.28);
     }
     .badge-test {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text-soft);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.13);
     }
 
     .upsell-list {
@@ -291,14 +286,14 @@
       gap: 12px;
       padding: 12px 14px;
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.30);
+      border: 1px solid rgba(255, 255, 255, 0.11);
       color: var(--text);
       cursor: pointer;
       transition: all 0.16s ease;
     }
     .upsell-item.selected {
-      background: rgba(255, 255, 255, 0.13);
+      background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.48);
     }
 
@@ -328,10 +323,11 @@
     }
 
     .toggle {
-      width: 40px;
-      height: 22px;
+      width: 42px;
+      height: 24px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.20);
       position: relative;
       transition: background 0.18s ease;
     }
@@ -343,11 +339,12 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #A1A1AA;
+      background: #C4C8D4;
       transition: transform 0.18s ease, background 0.18s ease;
     }
     .upsell-item.selected .toggle {
       background: #FFFFFF;
+      border-color: #FFFFFF;
     }
     .upsell-item.selected .toggle::after {
       transform: translateX(18px);
@@ -360,10 +357,10 @@
       gap: 8px;
     }
     .trust-tile {
-      padding: 11px 12px;
+      padding: 12px 13px;
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(0, 0, 0, 0.30);
+      border: 1px solid rgba(255, 255, 255, 0.10);
     }
     .trust-tile b {
       display: block;
@@ -373,7 +370,7 @@
     .trust-tile span {
       font-size: 11px;
       color: var(--muted);
-      line-height: 1.3;
+      line-height: 1.32;
       display: block;
     }
 
@@ -385,17 +382,24 @@
       width: calc(100% - 24px);
       max-width: 536px;
       z-index: 20;
-      padding: 12px 14px;
+      padding: 12px 14px 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      background: var(--glass-strong);
-      backdrop-filter: blur(26px) saturate(140%);
-      -webkit-backdrop-filter: blur(26px) saturate(140%);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 22px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.72);
+      overflow: hidden;
+      background: rgba(6, 7, 10, 0.44);
+      backdrop-filter: blur(18px) saturate(165%);
+      -webkit-backdrop-filter: blur(18px) saturate(165%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top-color: rgba(255, 255, 255, 0.42);
+      border-radius: 999px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.10),
+        inset 1px 0 1px rgba(170, 230, 255, 0.16),
+        inset -1px 0 1px rgba(255, 215, 160, 0.12),
+        0 18px 46px rgba(0, 0, 0, 0.78);
     }
 
     .total-label {
@@ -406,6 +410,7 @@
       font-size: 20px;
       font-weight: 800;
       white-space: nowrap;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
     }
 
     .cta-btn {
@@ -415,10 +420,11 @@
       color: #09090B;
       font-size: 14px;
       font-weight: 800;
-      padding: 13px 18px;
-      border-radius: 16px;
+      padding: 13px 20px;
+      border-radius: 999px;
       cursor: pointer;
       white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.22);
       transition: transform 0.12s ease, opacity 0.15s ease;
     }
     .cta-btn:active { transform: scale(0.97); }
@@ -427,9 +433,9 @@
       position: fixed;
       inset: 0;
       z-index: 50;
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -438,16 +444,25 @@
     .modal-backdrop.open { display: flex; }
 
     .modal {
+      position: relative;
+      overflow: hidden;
       width: 100%;
       max-width: 440px;
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      background: rgba(14, 14, 18, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      border-radius: 26px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      background: rgba(8, 10, 14, 0.62);
+      backdrop-filter: blur(28px) saturate(175%);
+      -webkit-backdrop-filter: blur(28px) saturate(175%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top-color: rgba(255, 255, 255, 0.42);
+      border-radius: 28px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        inset 1px 0 1px rgba(170, 230, 255, 0.16),
+        inset -1px 0 1px rgba(255, 215, 160, 0.12),
+        0 24px 64px rgba(0, 0, 0, 0.86);
     }
 
     .modal h3 {
@@ -457,9 +472,9 @@
 
     .summary-box {
       padding: 12px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       font-size: 12.5px;
       color: var(--text-soft);
       white-space: pre-line;
@@ -475,9 +490,9 @@
     .input {
       width: 100%;
       padding: 11px 13px;
-      border-radius: 13px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.38);
       color: #FFFFFF;
       font-size: 14px;
       outline: none;
@@ -493,9 +508,9 @@
     .del-opt {
       appearance: none;
       padding: 10px;
-      border-radius: 13px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.04);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.32);
       color: var(--text-soft);
       font-size: 13px;
       font-weight: 600;
@@ -517,9 +532,9 @@
     .btn-ghost {
       appearance: none;
       padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: transparent;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-soft);
       font-size: 14px;
       font-weight: 600;
@@ -532,9 +547,9 @@
       left: 50%;
       transform: translateX(-50%) translateY(-20px);
       z-index: 80;
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 999px;
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.94);
       color: #09090B;
       font-size: 13px;
       font-weight: 700;
@@ -580,7 +595,6 @@
           <div class="brand-sub">Сборка ПК · Паспорт · Гарантия</div>
         </div>
       </div>
-      <div class="status-pill">● Без торга</div>
     </header>
 
     <nav class="kit-tabs" id="kitTabs" aria-label="Выбор сборки"></nav>
@@ -974,31 +988,260 @@
       showToast('Заявка скопирована — отправьте в Telegram!');
     });
 
-    // 3D Hyperspace Warp-Speed Starfield (Xbox B&W signature style)
+    // 3D Hyperspace Warp-Speed Starfield + 3-Pass GPU WebGL Separable Gaussian & SDF Liquid Glass Shader
     const canvas = document.getElementById('warpCanvas');
-    const ctx = canvas.getContext('2d');
+    const bgCanvas = document.createElement('canvas');
+    const bgCtx = bgCanvas.getContext('2d', { alpha: false });
+
+    const gl = canvas.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'high-performance' });
+    const ctx2d = gl ? null : canvas.getContext('2d', { alpha: false });
+
     let cw = 0, ch = 0, dpr = 1;
+    let glassNodes = [];
+
+    function refreshGlassNodes() {
+      glassNodes = Array.from(document.querySelectorAll('.glass, .kit-tab:not(.active), .sticky-bar'));
+    }
+
+    const MAX_RECTS = 10;
+    const rectUniformData = new Float32Array(MAX_RECTS * 4);
+    const radUniformData = new Float32Array(MAX_RECTS);
+
+    let blurProg = null, glassProg = null;
+    let blurLoc = {}, glassLoc = {};
+    let srcTex = null, fboH = null, texH = null, fboV = null, texV = null;
+    let blurW = 1, blurH = 1;
+
+    function createTex(w, h) {
+      const t = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      if (w && h) {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      }
+      return t;
+    }
+
+    function createFbo(tex) {
+      const f = gl.createFramebuffer();
+      gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      return f;
+    }
+
+    function rebuildFbos(pw, ph) {
+      if (!gl) return;
+      // Half-res FBO + two-pass separable 17-tap Gaussian = silky 289-tap frosted glass, zero doubling, zero pixelation!
+      blurW = Math.max(2, Math.floor(pw * 0.5));
+      blurH = Math.max(2, Math.floor(ph * 0.5));
+      if (texH) gl.deleteTexture(texH);
+      if (texV) gl.deleteTexture(texV);
+      if (fboH) gl.deleteFramebuffer(fboH);
+      if (fboV) gl.deleteFramebuffer(fboV);
+      texH = createTex(blurW, blurH);
+      texV = createTex(blurW, blurH);
+      fboH = createFbo(texH);
+      fboV = createFbo(texV);
+    }
+
+    if (gl) {
+      const vsSrc = `
+        attribute vec2 aPos;
+        varying vec2 vUv;
+        void main() {
+          vUv = aPos * 0.5 + 0.5;
+          gl_Position = vec4(aPos, 0.0, 1.0);
+        }
+      `;
+
+      // Pass 1 & 2: True contiguous 17-tap separable Gaussian blur (zero ghosting / zero doubling!)
+      const blurFsSrc = `
+        precision highp float;
+        varying vec2 vUv;
+        uniform sampler2D uTex;
+        uniform vec2 uDir;
+        void main() {
+          vec3 col = texture2D(uTex, vUv).rgb * 0.1346;
+          col += (texture2D(uTex, clamp(vUv + uDir * 1.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 1.0, 0.001, 0.999)).rgb) * 0.1282;
+          col += (texture2D(uTex, clamp(vUv + uDir * 2.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 2.0, 0.001, 0.999)).rgb) * 0.1108;
+          col += (texture2D(uTex, clamp(vUv + uDir * 3.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 3.0, 0.001, 0.999)).rgb) * 0.0869;
+          col += (texture2D(uTex, clamp(vUv + uDir * 4.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 4.0, 0.001, 0.999)).rgb) * 0.0618;
+          col += (texture2D(uTex, clamp(vUv + uDir * 5.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 5.0, 0.001, 0.999)).rgb) * 0.0399;
+          col += (texture2D(uTex, clamp(vUv + uDir * 6.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 6.0, 0.001, 0.999)).rgb) * 0.0234;
+          col += (texture2D(uTex, clamp(vUv + uDir * 7.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 7.0, 0.001, 0.999)).rgb) * 0.0124;
+          col += (texture2D(uTex, clamp(vUv + uDir * 8.0, 0.001, 0.999)).rgb + texture2D(uTex, clamp(vUv - uDir * 8.0, 0.001, 0.999)).rgb) * 0.0060;
+          gl_FragColor = vec4(col, 1.0);
+        }
+      `;
+
+      // Pass 3: Continuous SDF Optical Liquid Glass Refraction + Chromatic Bevel
+      const glassFsSrc = `
+        precision highp float;
+        varying vec2 vUv;
+        uniform sampler2D uTex;
+        uniform sampler2D uBlurTex;
+        uniform vec2 uRes;
+        uniform int uCount;
+        uniform vec4 uRects[${MAX_RECTS}];
+        uniform float uRadii[${MAX_RECTS}];
+
+        float sdRoundedBox(vec2 p, vec2 b, float r) {
+          vec2 q = abs(p) - b + vec2(r);
+          return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r;
+        }
+
+        void main() {
+          vec2 frag = vec2(vUv.x * uRes.x, (1.0 - vUv.y) * uRes.y);
+          // srcTex is uploaded from 2D canvas (Y-flipped relative to GL vUv)
+          vec2 srcUv = vUv;
+          // blurTex was rendered by GL passes directly from srcTex (same orientation as vUv)
+          vec2 blurUv = vUv;
+
+          vec3 finalCol = texture2D(uTex, srcUv).rgb;
+
+          for (int i = 0; i < ${MAX_RECTS}; i++) {
+            if (i >= uCount) break;
+            vec4 rc = uRects[i];
+            float rad = uRadii[i];
+            vec2 halfSz = rc.zw * 0.5;
+            vec2 center = rc.xy + halfSz;
+            vec2 p = frag - center;
+
+            float d = sdRoundedBox(p, halfSz, rad);
+            if (d < 1.0) {
+              float inside = 1.0 - smoothstep(-1.0, 0.5, d);
+
+              // Exact smooth surface normal of the rounded glass bevel
+              float eps = 1.5;
+              vec2 grad = vec2(
+                sdRoundedBox(p + vec2(eps, 0.0), halfSz, rad) - sdRoundedBox(p - vec2(eps, 0.0), halfSz, rad),
+                sdRoundedBox(p + vec2(0.0, eps), halfSz, rad) - sdRoundedBox(p - vec2(0.0, eps), halfSz, rad)
+              );
+              vec2 n = normalize(grad + vec2(1e-5));
+
+              float bevelW = min(28.0, min(halfSz.x, halfSz.y) * 0.75);
+              float edge = smoothstep(-bevelW, 0.0, d);
+              float curve = pow(edge, 2.0);
+
+              // Smooth curved-lens refraction in screen coordinates (+Y down in frag, so invert Y for GL blurUv)
+              vec2 refractPx = -n * curve * 24.0;
+              vec2 domePx = -p * 0.028 * (1.0 - edge);
+              vec2 totalShiftPx = refractPx + domePx;
+              vec2 shiftBlurUv = vec2(totalShiftPx.x / uRes.x, -totalShiftPx.y / uRes.y);
+
+              // Subtle prismatic RGB chromatic aberration ONLY on the curved bevel rim
+              vec2 chromBlurUv = vec2(-n.x * curve * 3.8 / uRes.x, n.y * curve * 3.8 / uRes.y);
+
+              float rCh = texture2D(uBlurTex, clamp(blurUv + shiftBlurUv + chromBlurUv, 0.001, 0.999)).r;
+              float gCh = texture2D(uBlurTex, clamp(blurUv + shiftBlurUv, 0.001, 0.999)).g;
+              float bCh = texture2D(uBlurTex, clamp(blurUv + shiftBlurUv - chromBlurUv, 0.001, 0.999)).b;
+              vec3 glassCol = vec3(rCh, gCh, bCh);
+
+              // Rich dark clear glass interior (matching AndroidLiquidGlass in 1636.jpg)
+              glassCol = glassCol * 1.25 + vec3(0.012, 0.015, 0.022);
+
+              // Crisp Fresnel specular edge highlight
+              float fresnel = pow(edge, 4.5);
+              float lightDir = clamp(dot(n, normalize(vec2(-0.55, -0.83))) * 0.5 + 0.5, 0.0, 1.0);
+              vec3 rimGlow = mix(vec3(0.74, 0.88, 1.0), vec3(1.0, 0.95, 0.88), 1.0 - lightDir);
+              glassCol += rimGlow * fresnel * (0.14 + 0.24 * lightDir);
+
+              finalCol = mix(finalCol, glassCol, inside);
+            }
+          }
+
+          gl_FragColor = vec4(finalCol, 1.0);
+        }
+      `;
+
+      function compile(type, src) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(sh));
+          return null;
+        }
+        return sh;
+      }
+
+      function link(vsSrcText, fsSrcText) {
+        const vs = compile(gl.VERTEX_SHADER, vsSrcText);
+        const fs = compile(gl.FRAGMENT_SHADER, fsSrcText);
+        if (!vs || !fs) return null;
+        const pr = gl.createProgram();
+        gl.attachShader(pr, vs);
+        gl.attachShader(pr, fs);
+        gl.linkProgram(pr);
+        return pr;
+      }
+
+      blurProg = link(vsSrc, blurFsSrc);
+      glassProg = link(vsSrc, glassFsSrc);
+
+      if (blurProg && glassProg) {
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+        [blurProg, glassProg].forEach((pr) => {
+          const aPos = gl.getAttribLocation(pr, 'aPos');
+          gl.enableVertexAttribArray(aPos);
+          gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        });
+
+        srcTex = createTex(0, 0);
+
+        blurLoc = {
+          uTex: gl.getUniformLocation(blurProg, 'uTex'),
+          uDir: gl.getUniformLocation(blurProg, 'uDir')
+        };
+        glassLoc = {
+          uTex: gl.getUniformLocation(glassProg, 'uTex'),
+          uBlurTex: gl.getUniformLocation(glassProg, 'uBlurTex'),
+          uRes: gl.getUniformLocation(glassProg, 'uRes'),
+          uCount: gl.getUniformLocation(glassProg, 'uCount'),
+          uRects: gl.getUniformLocation(glassProg, 'uRects[0]'),
+          uRadii: gl.getUniformLocation(glassProg, 'uRadii[0]')
+        };
+      }
+    }
 
     function resizeWarp() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       cw = window.innerWidth;
       ch = window.innerHeight;
-      canvas.width = Math.floor(cw * dpr);
-      canvas.height = Math.floor(ch * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const pw = Math.max(2, Math.floor(cw * dpr));
+      const ph = Math.max(2, Math.floor(ch * dpr));
+      canvas.width = pw;
+      canvas.height = ph;
+      bgCanvas.width = pw;
+      bgCanvas.height = ph;
+      bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (gl && blurProg && glassProg) {
+        rebuildFbos(pw, ph);
+      } else if (ctx2d) {
+        ctx2d.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      refreshGlassNodes();
     }
 
-    const STARS = Array.from({ length: 110 }, (_, i) => {
+    const STARS = Array.from({ length: 140 }, (_, i) => {
       const ang = (i * 2.3999632297 + Math.random() * 0.5) % (Math.PI * 2);
-      const hero = i < 24;
-      const tint = i % 11 === 0 ? '255,229,184' : (i % 6 === 0 ? '214,246,255' : '255,255,255');
+      const hero = i < 36;
+      const tint = i % 9 === 0 ? '255,222,170' : (i % 5 === 0 ? '186,238,255' : '255,255,255');
       return {
         cos: Math.cos(ang),
         sin: Math.sin(ang),
         z0: Math.random(),
-        speed: hero ? 0.24 + Math.random() * 0.18 : 0.12 + Math.random() * 0.16,
-        tail: 0.045 + Math.random() * 0.065,
-        w: hero ? 2.1 + Math.random() * 2.0 : 0.8 + Math.random() * 1.2,
+        speed: hero ? 0.22 + Math.random() * 0.16 : 0.11 + Math.random() * 0.15,
+        tail: hero ? 0.068 + Math.random() * 0.085 : 0.045 + Math.random() * 0.065,
+        w: hero ? 3.0 + Math.random() * 3.4 : 0.9 + Math.random() * 1.4,
+        hero,
         tint
       };
     });
@@ -1007,46 +1250,126 @@
     function drawWarp(ts) {
       if (!startTs) startTs = ts;
       const sec = (ts - startTs) / 1000;
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, cw, ch);
 
-      const cx = cw * 0.5 + cw * 0.02 * Math.sin(sec * 0.24);
-      const cy = ch * 0.44 + ch * 0.015 * Math.cos(sec * 0.20);
-      const maxR = Math.hypot(cw, ch) * 0.72;
+      // 1. Render crisp full-resolution Hyperspace Starfield to bgCanvas
+      bgCtx.fillStyle = '#000000';
+      bgCtx.fillRect(0, 0, cw, ch);
 
-      ctx.lineCap = 'round';
+      const cx = cw * 0.5 + cw * 0.03 * Math.sin(sec * 0.26);
+      const cy = ch * 0.42 + ch * 0.02 * Math.cos(sec * 0.22);
+      const maxR = Math.hypot(cw, ch) * 0.80;
+
+      bgCtx.lineCap = 'round';
       for (let i = 0; i < STARS.length; i++) {
         const s = STARS[i];
         const p = (s.z0 + sec * s.speed) % 1;
         const zH = Math.max(0.02, 1 - p);
-        const zT = Math.min(1.02, zH + s.tail * (0.45 + 0.9 * p));
-        const rH = maxR * (0.05 / (zH + 0.032));
-        const rT = maxR * (0.05 / (zT + 0.032));
-        if (rT > maxR * 1.3) continue;
+        const zT = Math.min(1.02, zH + s.tail * (0.48 + 0.95 * p));
+        const rH = maxR * (0.052 / (zH + 0.030));
+        const rT = maxR * (0.052 / (zT + 0.030));
+        if (rT > maxR * 1.35) continue;
 
         const rM = (rT + rH) * 0.5;
         const x1 = cx + s.cos * rT, y1 = cy + s.sin * rT;
         const xm = cx + s.cos * rM, ym = cy + s.sin * rM;
         const x2 = cx + s.cos * rH, y2 = cy + s.sin * rH;
-        const fade = Math.min(1, p / 0.15) * (0.28 + 0.72 * p);
-        const lw = s.w * (0.35 + 0.9 * p);
+        const fade = Math.min(1, p / 0.14) * (0.36 + 0.64 * p);
+        const lw = s.w * (0.42 + 0.96 * p);
 
-        ctx.strokeStyle = 'rgba(' + s.tint + ',' + (fade * 0.36).toFixed(3) + ')';
-        ctx.lineWidth = lw * 0.78;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(xm, ym);
-        ctx.stroke();
+        if (s.hero) {
+          bgCtx.strokeStyle = 'rgba(' + s.tint + ',' + (fade * 0.28).toFixed(3) + ')';
+          bgCtx.lineWidth = lw * 2.4;
+          bgCtx.beginPath();
+          bgCtx.moveTo(xm, ym);
+          bgCtx.lineTo(x2, y2);
+          bgCtx.stroke();
+        }
 
-        ctx.strokeStyle = 'rgba(255,255,255,' + fade.toFixed(3) + ')';
-        ctx.lineWidth = lw;
-        ctx.beginPath();
-        ctx.moveTo(xm, ym);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
+        bgCtx.strokeStyle = 'rgba(' + s.tint + ',' + (fade * 0.52).toFixed(3) + ')';
+        bgCtx.lineWidth = lw * 0.82;
+        bgCtx.beginPath();
+        bgCtx.moveTo(x1, y1);
+        bgCtx.lineTo(xm, ym);
+        bgCtx.stroke();
+
+        bgCtx.strokeStyle = 'rgba(255,255,255,' + fade.toFixed(3) + ')';
+        bgCtx.lineWidth = lw;
+        bgCtx.beginPath();
+        bgCtx.moveTo(xm, ym);
+        bgCtx.lineTo(x2, y2);
+        bgCtx.stroke();
       }
+
+      // 2. 3-Pass GPU WebGL Separable Gaussian Blur + SDF Liquid Glass
+      if (gl && blurProg && glassProg && fboH && fboV) {
+        // Upload crisp bgCanvas to srcTex
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, srcTex);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, bgCanvas);
+
+        // Pass 1: Horizontal contiguous Gaussian blur (srcTex -> fboH)
+        // Note: flip Y once on upload for blurTex? Let's keep srcTex unflipped and flip Y inside Pass 1?
+        // Actually, if we set UNPACK_FLIP_Y_WEBGL = true when uploading srcTex, then srcTex AND blurTex BOTH match GL vUv (bottom-up)!
+        // Let's handle Y cleanly: flip on upload! Wait — let's check below.
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fboH);
+        gl.viewport(0, 0, blurW, blurH);
+        gl.useProgram(blurProg);
+        gl.uniform1i(blurLoc.uTex, 0);
+        gl.uniform2f(blurLoc.uDir, 1.35 / blurW, 0.0);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+        // Pass 2: Vertical contiguous Gaussian blur (texH -> fboV)
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fboV);
+        gl.bindTexture(gl.TEXTURE_2D, texH);
+        gl.uniform2f(blurLoc.uDir, 0.0, 1.35 / blurH);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+        // Pass 3: Screen-space SDF Liquid Glass composite (srcTex + texV -> screen)
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+
+        let count = 0;
+        for (let i = 0; i < glassNodes.length && count < MAX_RECTS; i++) {
+          const el = glassNodes[i];
+          const r = el.getBoundingClientRect();
+          if (r.bottom < -4 || r.top > ch + 4 || r.width < 8 || r.height < 8) continue;
+          const isPill = el.classList.contains('header') || el.classList.contains('kit-tab') || el.classList.contains('sticky-bar');
+          const rad = isPill ? Math.min(r.height * 0.5, 48) : 26;
+          rectUniformData[count * 4 + 0] = r.left * dpr;
+          rectUniformData[count * 4 + 1] = r.top * dpr;
+          rectUniformData[count * 4 + 2] = r.width * dpr;
+          rectUniformData[count * 4 + 3] = r.height * dpr;
+          radUniformData[count] = rad * dpr;
+          count++;
+        }
+
+        gl.useProgram(glassProg);
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, srcTex);
+        gl.uniform1i(glassLoc.uTex, 0);
+
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, texV);
+        gl.uniform1i(glassLoc.uBlurTex, 1);
+
+        gl.uniform2f(glassLoc.uRes, canvas.width, canvas.height);
+        gl.uniform1i(glassLoc.uCount, count);
+        gl.uniform4fv(glassLoc.uRects, rectUniformData);
+        gl.uniform1fv(glassLoc.uRadii, radUniformData);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      } else if (ctx2d) {
+        ctx2d.drawImage(bgCanvas, 0, 0, cw, ch);
+      }
+
       requestAnimationFrame(drawWarp);
     }
+
+    const origRender = render;
+    render = function () {
+      origRender();
+      refreshGlassNodes();
+    };
 
     window.addEventListener('resize', resizeWarp);
     window.addEventListener('load', () => {
